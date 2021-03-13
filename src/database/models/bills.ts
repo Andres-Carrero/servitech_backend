@@ -6,7 +6,7 @@ import { UsersDB } from "./users";
     tableName: 'Bills',
 })
 export class BillsDB extends Model<BillsDB>{
-
+     
     @AllowNull(false)
     @Column({type: DataType.STRING})
     unique_id: string
