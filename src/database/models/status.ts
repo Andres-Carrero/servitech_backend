@@ -1,8 +1,10 @@
-import { Table, Model, AllowNull, DataType, DeletedAt, Unique, Column, PrimaryKey, HasMany } from "sequelize-typescript";
-import { BillsDB } from "./bills";
-import { IdentificationDB } from "./identification";
+import { Table, Model, AllowNull, DataType, Column, HasMany } from "sequelize-typescript";
+import { CategoryDB } from "./category";
+import { productsDB } from "./products";
 import { RolesDB } from "./roles";
 import { UsersDB } from "./users";
+import { VehiclesDB } from "./vehicles";
+import { VendorsDB } from "./vendors";
 
 @Table({
     tableName: 'Status',
@@ -13,19 +15,25 @@ export class StatusDB extends Model<StatusDB>{
     @Column({type: DataType.STRING})
     title: string
 
-
-
-
     @HasMany(() => UsersDB)
     users: UsersDB
 
-    @HasMany(() => BillsDB)
-    bills: BillsDB
+    @HasMany(() => productsDB)
+    products: productsDB
 
-    @HasMany(() => IdentificationDB)
-    identifications: IdentificationDB
+    @HasMany(() => CategoryDB)
+    category: CategoryDB
 
-    @HasMany(() => RolesDB)
-    roles: RolesDB
+    @HasMany(() => VendorsDB)
+    vendors: VendorsDB
 
+    @HasMany(() => VehiclesDB)
+    vehicles: VehiclesDB
 }
+
+/*
+    id: number
+    title: string
+    createdAt: Date
+    updatedAt: Date
+*/

@@ -1,3 +1,5 @@
+import { GeneralController } from './app/controllers/general.controller';
+import { GeneralService } from './app/services/general.service';
 import { IndexModule } from './app/index.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -19,7 +21,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
       models: [__dirname + '/database/models/*{.ts}'],
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    AppController],
+  providers: [
+    AppService],
 })
 export class AppModule { }
