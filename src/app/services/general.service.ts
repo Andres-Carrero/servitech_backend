@@ -1,138 +1,138 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { genderDB } from 'src/database/models/gender';
-import { IdentificationDB } from 'src/database/models/identification';
+import { GenerosDB } from 'src/database/models/generos';
+import { IdentificationesDB } from 'src/database/models/tipos_identificationes';
 import { RolesDB } from 'src/database/models/roles';
-import { StatusDB } from 'src/database/models/status';
-import { StatusPaymentDB } from 'src/database/models/statusPayment';
-import { TypeVehicleDB } from 'src/database/models/type_vehicles';
+import { EstadoDB } from 'src/database/models/estado';
+import { EstadoPagosDB } from 'src/database/models/estado_pagos';
+import { TipoVehiculosDB } from 'src/database/models/tipo_vehiculos';
 
 @Injectable()
 export class GeneralService {
 constructor(
-    @InjectModel(IdentificationDB)
-        private readonly IdentificationModel: typeof IdentificationDB,
+    @InjectModel(IdentificationesDB)
+        private readonly IdentificationModel: typeof IdentificationesDB,
 
-    @InjectModel(genderDB)
-        private readonly GenderModel: typeof genderDB,
+    @InjectModel(GenerosDB)
+        private readonly GenderModel: typeof GenerosDB,
 
     @InjectModel(RolesDB)
         private readonly RolesModel: typeof RolesDB,
 
-    @InjectModel(TypeVehicleDB)
-        private readonly TypeVehicleModel: typeof TypeVehicleDB,
+    @InjectModel(TipoVehiculosDB)
+        private readonly TypeVehicleModel: typeof TipoVehiculosDB,
 
-    @InjectModel(StatusPaymentDB)
-        private readonly StatusPaymentModel: typeof StatusPaymentDB,
+    @InjectModel(EstadoPagosDB)
+        private readonly StatusPaymentModel: typeof EstadoPagosDB,
 
-    @InjectModel(StatusDB)
-        private readonly StatusModel: typeof StatusDB,
+    @InjectModel(EstadoDB)
+        private readonly EstadoModel: typeof EstadoDB,
 
 ){}
 
 async CreateAll(){
     const Status1 = {
         id: 1,
-        title: 'Activo'
+        estado: 'Activo'
     }
     const Status2 = {
         id: 2,
-        title: 'Pendiente'
+        estado: 'Pendiente'
     }
     const Status3 = {
         id: 3,
-        title: 'Inactivo'
+        estado: 'Inactivo'
     }
     const Status4 = {
         id: 4,
-        title: 'Eliminado'
+        estado: 'Eliminado'
     }
 
 
     const StatusPayment1 = {
         id: 1,
-        title: 'Pagado'
+        estado: 'Pagado'
     }
     const StatusPayment2 = {
         id: 2,
-        title: 'Pendiente'
+        estado: 'Pendiente'
     }
     const StatusPayment3 = {
         id: 3,
-        title: 'Cancelado'
+        estado: 'Cancelado'
     }
 
 
     const Gender1 = {
         id: 1,
-        title: 'Masculino'
+        genero: 'Masculino'
     }
     const Gender2 = {
         id: 2,
-        title: 'Femenino'
+        genero: 'Femenino'
     }
     const Gender3 = {
         id: 3,
-        title: 'Indefinido'
+        genero: 'Indefinido'
     }
 
 
     const role1 = {
         id: 1,
-        unique_id: 'ADMIN_ROLE',
-        title: 'Administrador',
-        description: 'V1'
+        codigo_rol: 'ADMIN_ROLE',
+        rol: 'Administrador',
+        descripcion: 'V1'
     }
     const role2 = {
         id: 2,
-        unique_id: 'MODERADOR_ROLE',
-        title: 'Moderador',
-        description: 'V1'
+        codigo_rol: 'MODERADOR_ROLE',
+        rol: 'Moderador',
+        descripcion: 'V1'
     }
     const role3 = {
         id: 3,
-        unique_id: 'CLIENTE_ROLE',
-        title: 'Cliente',
-        description: 'V1'
+        codigo_rol: 'CLIENTE_ROLE',
+        rol: 'Cliente',
+        descripcion: 'V1'
     }
 
     const identification1 = {
         id: 1,
-        type: 'Cedula de Ciudadania'
+        tipo: 'Cedula de Ciudadania'
     }
     const identification2 = {
         id: 2,
-        type: 'Tarjeta de Identidad'
+        tipo: 'Tarjeta de Identidad'
     }
     const identification3 = {
         id: 3,
-        type: 'Cedula Extranjera'
+        tipo: 'Cedula Extranjera'
     }
 
     const typeVehicle1 = {
         id: 1,
-        unique_id: 'TYPE_AUTOMOVIL',
-        title: 'Automovil'
+        codigo_tipoVehiculo: 'TYPE_AUTOMOVIL',
+        tipo: 'Automovil'
     }
     const typeVehicle2 = {
         id: 2,
-        unique_id: 'TYPE_MOTOCICLETA',
-        title: 'Motocicleta'
+        codigo_tipoVehiculo: 'TYPE_MOTOCICLETA',
+        tipo: 'Motocicleta'
     }
     const typeVehicle3 = {
         id: 3,
-        unique_id: 'TYPE_BICICLETA',
-        title: 'Bicicleta'
+        codigo_tipoVehiculo: 'TYPE_BICICLETA',
+        tipo: 'Bicicleta'
     }
     const typeVehicle4 = {
         id: 4,
-        unique_id: 'TYPE_FURGON',
-        title: 'Furgon/Furgoneta'
+        codigo_tipoVehiculo: 'TYPE_FURGON',
+        tipo: 'Furgon/Furgoneta'
     }
     const typeVehicle5 = {
         id: 5,
-        unique_id: 'TYPE_CAMION',
-        title: 'Camion'
+        codigo_tipoVehiculo: 'TYPE_CAMION',
+        tipo: 'Camion'
     }
 
     const newStatus1 = await this.CreateStatus(Status1)
@@ -207,8 +207,8 @@ async CreateAll(){
 async CreateStatus(body):Promise<any>{
     try {
         const id = body.id
-        const title = body.title
-        const findAll = await this.StatusModel.findAll({
+        const estado = body.estado
+        const findAll = await this.EstadoModel.findAll({
             attributes: [
                 'id',
             ]
@@ -225,16 +225,16 @@ async CreateStatus(body):Promise<any>{
     
             }  
             
-        const create = await this.StatusModel.create(body)
+        const create = await this.EstadoModel.create(body)
     
             if(!create){
                 throw new Error(
-                    "Fallo al crear: "+title
+                    "Fallo al crear: "+estado
                 )
             }
             
         return {
-            message: title + ' creado exitosamente',
+            message: estado + ' creado exitosamente',
             status: 200, 
             body: create 
         }
@@ -254,7 +254,7 @@ async CreateStatus(body):Promise<any>{
 async CreateStatusPayment(body):Promise<any>{
     try {
         const id = body.id
-        const title = body.title
+        const title = body.estado
         const findAll = await this.StatusPaymentModel.findAll({
             attributes: [
                 'id',
@@ -303,12 +303,12 @@ async CreateStatusPayment(body):Promise<any>{
 async CreateTypeVehicle(body):Promise<any>{
     try {
         const id = body.id
-        const unique_id = body.unique_id
-        const title = body.title
+        const unique_id = body.codigo_tipoVehiculo
+        const title = body.tipo
         const findAll = await this.TypeVehicleModel.findAll({
             attributes: [
                 'id',
-                'unique_id'
+                'codigo_tipoVehiculo'
             ]
         })
             
@@ -321,7 +321,7 @@ async CreateTypeVehicle(body):Promise<any>{
                     )
                 }
 
-                if(unique_id == index.unique_id){
+                if(unique_id == index.codigo_tipoVehiculo){
                     throw new Error(
                         "Ya existe: Codigo unico = "+unique_id
                     )
@@ -358,7 +358,7 @@ async CreateTypeVehicle(body):Promise<any>{
 async CreateRoles(body):Promise<any>{
 try {
     const id = body.id
-    const title = body.title
+    const title = body.rol
     const findAll = await this.RolesModel.findAll({attributes: ['id']})
         
         for (let i = 0; i < findAll.length; i++) {
@@ -401,8 +401,8 @@ catch (error) {
 async CreateIdentification(body):Promise<any>{
 try {
     const id = body.id
-    const type = body.type
-    const findAll = await this.IdentificationModel.findAll({attributes: ['id', 'type']})
+    const type = body.tipo
+    const findAll = await this.IdentificationModel.findAll({attributes: ['id', 'tipo']})
     
         for (let i = 0; i < findAll.length; i++) {
         const index = findAll[i];
@@ -413,7 +413,7 @@ try {
                 )
             }
 
-            if(type == index.type){
+            if(type == index.tipo){
                 throw new Error(
                     "Ya existe: tipo = " + type
                 )
@@ -448,7 +448,7 @@ catch (error) {
 async CreateGender(body):Promise<any>{
 try {
     const id = body.id
-    const title = body.title
+    const title = body.genero
     const findAll = await this.GenderModel.findAll({attributes: ['id']})
 
         for (let i = 0; i < findAll.length; i++) {

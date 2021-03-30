@@ -1,32 +1,45 @@
 export class GendersDto {
     id: number;
-    title: string; 
+    genero: string; 
+    creado: Date
+    actualizado: Date
 }
 
 export class IdentificationsDto {
     id: number;
-    type: string; 
+    tipo: string; 
+    creado: Date
+    actualizado: Date
 }
 
 export class RolesDto {
     id: number;
-    unique_id: string;
-    title: string;
-    description: string
+    codigo_rol: string;
+    rol: string;
+    descripcion: string
+    creado: Date
+    actualizado: Date
+    eliminado: Date
 }
 
 export class TypesVehiclesDto {
     id: number;
-    unique_id:string
-    title: string; 
+    codigo_tipoVehiculo:string
+    tipo: string; 
+    creado: Date
+    actualizado: Date
 }
 
 export class StatusPaymentDto {
     id: number;
-    title: string; 
+    estado: string;
+    creado: Date
+    actualizado: Date
 }
 
 export class StatusDto {
     id: number;
-    title: string; 
+    estado: string;
+    creado: Date
+    actualizado: Date
 }

@@ -2,33 +2,40 @@ import {
     Table, 
     Model, 
     AllowNull, 
-    DataType, 
+    DataType,
+    Unique,
     DeletedAt, 
-    Unique, 
     Column, 
     HasMany, 
-    CreatedAt, 
-    UpdatedAt 
+    ForeignKey, 
+    BelongsTo, 
+    CreatedAt,
+    UpdatedAt
 } from "sequelize-typescript";
-import { UsuarioDB } from "./usuarios";
+import { ProductosDB } from "./productos";
+import { EstadoDB } from "./estado";
 
 @Table({
-    tableName: 'Roles',
+    tableName: 'Categorias',
 })
-export class RolesDB extends Model<RolesDB>{
-    
-    @Unique
-    @AllowNull(false)
-    @Column({type: DataType.STRING})
-    codigo_rol: string
+export class CategoriaDB extends Model<CategoriaDB>{
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    rol: string
+    codigo_categoria: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
+    titulo: string
+
+    @AllowNull(false)
+    @Column({type: DataType.STRING(5000)})
     descripcion: string
+
+    @AllowNull(false) 
+    @ForeignKey(() => EstadoDB)
+    @Column({type: DataType.INTEGER})
+    estado_id: number;
 
     @CreatedAt
     @Column({type: DataType.DATE})
@@ -43,11 +50,11 @@ export class RolesDB extends Model<RolesDB>{
     eliminado: Date
 
 
+    @HasMany(() => ProductosDB)
+    productos: ProductosDB
 
-    
-    @HasMany(() => UsuarioDB)
-    usuarios: UsuarioDB  
-
+    @BelongsTo(() => EstadoDB)
+    estado: EstadoDB;
 }
 
 /*

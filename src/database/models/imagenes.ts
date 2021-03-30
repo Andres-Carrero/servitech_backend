@@ -4,31 +4,38 @@ import {
     AllowNull, 
     DataType, 
     DeletedAt, 
-    Unique, 
     Column, 
-    HasMany, 
-    CreatedAt, 
-    UpdatedAt 
+    ForeignKey, 
+    BelongsTo,  
+    Unique,
+    CreatedAt,
+    UpdatedAt
 } from "sequelize-typescript";
-import { UsuarioDB } from "./usuarios";
+import { ProductosDB } from "./productos";
+
 
 @Table({
-    tableName: 'Roles',
+    tableName: 'Imagenes',
 })
-export class RolesDB extends Model<RolesDB>{
-    
+export class ImagenesDB extends Model<ImagenesDB>{
+     
     @Unique
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    codigo_rol: string
+    codigo_imagen: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    rol: string
+    titulo: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
-    descripcion: string
+    @Column({type: DataType.STRING(90000)})
+    contenido: string
+
+    @AllowNull(false) 
+    @ForeignKey(() => ProductosDB)
+    @Column({type: DataType.INTEGER})
+    producto_id: number
 
     @CreatedAt
     @Column({type: DataType.DATE})
@@ -44,19 +51,7 @@ export class RolesDB extends Model<RolesDB>{
 
 
 
-    
-    @HasMany(() => UsuarioDB)
-    usuarios: UsuarioDB  
+    @BelongsTo(() => ProductosDB)
+    producto: ProductosDB;
 
 }
-
-/*
-    id: number
-    unique_id: string
-    title: string
-    description: string
-    status_id: number;
-    createdAt: Date
-    updatedAt: Date
-    deletedAt: Date
-*/

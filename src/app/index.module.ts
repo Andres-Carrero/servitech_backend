@@ -1,39 +1,39 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { BillsDB } from 'src/database/models/bills';
-import { CategoryDB } from 'src/database/models/category';
-import { genderDB } from 'src/database/models/gender';
-import { IdentificationDB } from 'src/database/models/identification';
-import { ImagesDB } from 'src/database/models/images';
-import { productsDB } from 'src/database/models/products';
+import { FacturasDB } from 'src/database/models/facturas';
+import { CategoriaDB } from 'src/database/models/categorias';
+import { GenerosDB } from 'src/database/models/generos';
+import { IdentificationesDB } from 'src/database/models/tipos_identificationes';
+import { ImagenesDB } from 'src/database/models/imagenes';
+import { ProductosDB } from 'src/database/models/productos';
 import { RolesDB } from 'src/database/models/roles';
-import { StatusDB } from 'src/database/models/status';
-import { StatusPaymentDB } from 'src/database/models/statusPayment';
-import { TypeVehicleDB } from 'src/database/models/type_vehicles';
-import { UsersDB } from 'src/database/models/users';
-import { VehiclesDB } from 'src/database/models/vehicles';
-import { VendorsDB } from 'src/database/models/vendors';
-import { _BillsDB_ProductsDB } from 'src/database/models/_bills-products';
+import { EstadoDB } from 'src/database/models/estado';
+import { EstadoPagosDB } from 'src/database/models/estado_pagos';
+import { TipoVehiculosDB } from 'src/database/models/tipo_vehiculos';
+import { UsuarioDB } from 'src/database/models/usuarios';
+import { VehiculosDB } from 'src/database/models/vehiculos';
+import { ProveedoresDB } from 'src/database/models/proveedores';
+import { _FacturasDB_ProductosDB } from 'src/database/models/_facturas-productos';
 import { GeneralController } from './controllers/general.controller';
 import { GeneralService } from './services/general.service';
 
 @Module({
     imports: [
         SequelizeModule.forFeature([
-            _BillsDB_ProductsDB,
-            IdentificationDB,
-            StatusPaymentDB,
-            TypeVehicleDB,
-            VehiclesDB,
-            productsDB,
-            CategoryDB,
-            VendorsDB,
-            ImagesDB,
-            genderDB,
-            StatusDB,
-            UsersDB,
+            _FacturasDB_ProductosDB,
+            IdentificationesDB,
+            TipoVehiculosDB,
+            EstadoPagosDB,
+            ProveedoresDB,   
+            ProductosDB,
+            CategoriaDB,
+            VehiculosDB,
+            ImagenesDB,
+            FacturasDB,
+            GenerosDB,
+            UsuarioDB,
+            EstadoDB,
             RolesDB,
-            BillsDB,
         ]),
     ],
     controllers: [

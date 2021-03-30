@@ -8,66 +8,76 @@ import {
     ForeignKey, 
     BelongsTo, 
     BelongsToMany, 
-    Unique
+    Unique,
+    CreatedAt,
+    UpdatedAt
 } from "sequelize-typescript";
-import { productsDB } from "./products";
-import { StatusPaymentDB } from "./statusPayment";
-import { UsersDB } from "./users";
-import { _BillsDB_ProductsDB } from "./_bills-products";
+import { ProductosDB } from "./productos";
+import { EstadoPagosDB } from "./estado_pagos";
+import { UsuarioDB } from "./usuarios";
+import { _FacturasDB_ProductosDB } from "./_facturas-productos";
 
 @Table({
-    tableName: 'Bills',
+    tableName: 'Facturas',
 })
-export class BillsDB extends Model<BillsDB>{
+export class FacturasDB extends Model<FacturasDB>{
      
     @Unique
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    unique_id: string
+    codigo_facturas: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    affair: string
+    asunto: string
 
     @AllowNull(false)
     @Column({type: DataType.DATE})
-    date: Date
+    fecha: Date
 
     @AllowNull(false) 
-    @ForeignKey(() => UsersDB)
+    @ForeignKey(() => UsuarioDB)
     @Column({type: DataType.INTEGER})
-    client_id: number
+    cliente: number
 
     @AllowNull(false)
     @Column({type: DataType.INTEGER})
-    units: number
+    unidades: number
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
     total: string
 
     @AllowNull(false) 
-    @ForeignKey(() => StatusPaymentDB)
+    @ForeignKey(() => EstadoPagosDB)
     @Column({type: DataType.INTEGER})
-    status_id: number;
+    estado_id: number;
+
+    @CreatedAt
+    @Column({type: DataType.DATE})
+    creado: Date
+
+    @UpdatedAt
+    @Column({type: DataType.DATE})
+    actualizado: Date
 
     @DeletedAt
     @Column({type: DataType.DATE})
-    deletedAt: Date
+    eliminado: Date
 
 
 
 
 
-    @BelongsToMany(() => productsDB, () => _BillsDB_ProductsDB)
-    products: productsDB[]
+    @BelongsToMany(() => ProductosDB, () => _FacturasDB_ProductosDB)
+    productos: ProductosDB[]
 
 
-    @BelongsTo(() => UsersDB)
-    clients: UsersDB[]
+    @BelongsTo(() => UsuarioDB)
+    clientes: UsuarioDB[]
 
-    @BelongsTo(() => StatusPaymentDB)
-    StatusDB: StatusPaymentDB;
+    @BelongsTo(() => EstadoPagosDB)
+    estado: EstadoPagosDB;
 }
 
 /*

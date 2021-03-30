@@ -10,55 +10,57 @@ import {
     BelongsTo, 
     HasMany, 
     Length,
-    IsEmail
+    IsEmail,
+    CreatedAt,
+    UpdatedAt
 } from "sequelize-typescript";
 
-import { BillsDB } from "./bills";
-import { genderDB } from "./gender";
-import { IdentificationDB } from "./identification";
+import { FacturasDB } from "./facturas";
+import { GenerosDB } from "./generos";
+import { IdentificationesDB } from "./tipos_identificationes";
 import { RolesDB } from "./roles";
-import { StatusDB } from "./status";
-import { VehiclesDB } from "./vehicles";
+import { EstadoDB } from "./estado";
+import { VehiculosDB } from "./vehiculos";
 
 @Table({
-    tableName: 'Users',
+    tableName: 'Usuarios',
 })
-export class UsersDB extends Model<UsersDB>{
+export class UsuarioDB extends Model<UsuarioDB>{
 
     @Unique(true)
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    unique_id: string
+    codigo_usuario: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING(10000)})
-    img: string
+    imagen: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    first_name: string
+    primer_nombre: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    second_name: string
+    secundo_nombre: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    first_surname: string
+    primer_apellido: string
     
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    second_surname: string
+    segundo_nombre: string
 
     @AllowNull(false) 
-    @ForeignKey(() => IdentificationDB)
+    @ForeignKey(() => IdentificationesDB)
     @Column({type: DataType.INTEGER})
-    type_identification_ID: number;
+    tipoIdentificacion_id: number;
       
     @Unique(true)
     @AllowNull(false)
     @Column({type: DataType.INTEGER})
-    identification: number
+    numero_identificacion: number
 
     @Unique(true)
     @IsEmail
@@ -69,11 +71,11 @@ export class UsersDB extends Model<UsersDB>{
     @AllowNull(false)
     @Length({min: 8})
     @Column({type: DataType.STRING})
-    password: string
+    contraseña: string
 
     @AllowNull(false)
     @Column({type: DataType.DATE})
-    date_birth: Date
+    fecha_nacimiento: Date
 
     @AllowNull(false) 
     @ForeignKey(() => RolesDB)
@@ -81,45 +83,53 @@ export class UsersDB extends Model<UsersDB>{
     role_id: number;
 
     @AllowNull(false) 
-    @ForeignKey(() => StatusDB)
+    @ForeignKey(() => EstadoDB)
     @Column({type: DataType.INTEGER})
-    status_id: number;
+    estado_id: number;
 
     @AllowNull(false) 
-    @ForeignKey(() => genderDB)
+    @ForeignKey(() => GenerosDB)
     @Column({type: DataType.INTEGER})
-    gender_id: number;
+    genero_id: number;
 
     @AllowNull(false)
     @Column({type: DataType.INTEGER})
-    phoneNumber: number
+    numero_telefono: number
 
     @AllowNull(false)
     @Column({type: DataType.INTEGER})
-    alternatePhoneNumber: number
+    numero_telefono2: number
+
+    @CreatedAt
+    @Column({type: DataType.DATE})
+    creado: Date
+
+    @UpdatedAt
+    @Column({type: DataType.DATE})
+    actualizado: Date
 
     @DeletedAt
     @Column({type: DataType.DATE})
-    deletedAt: Date
+    eliminado: Date
 
 
 
 
 
-    @HasMany(() => BillsDB)
-    bills: BillsDB[]
+    @HasMany(() => FacturasDB)
+    facturas: FacturasDB[]
 
-    @HasMany(() => VehiclesDB)
-    vehicles: VehiclesDB[]
+    @HasMany(() => VehiculosDB)
+    vehiculos: VehiculosDB[]
 
-    @BelongsTo(() => genderDB)
-    gender: genderDB;
+    @BelongsTo(() => GenerosDB)
+    genero: GenerosDB;
 
-    @BelongsTo(() => IdentificationDB)
-    type_identification: IdentificationDB;
+    @BelongsTo(() => IdentificationesDB)
+    tipo_identificacion: IdentificationesDB;
 
-    @BelongsTo(() => StatusDB)
-    Status: StatusDB;
+    @BelongsTo(() => EstadoDB)
+    estado: EstadoDB;
 
     @BelongsTo(() => RolesDB)
     rol: RolesDB;

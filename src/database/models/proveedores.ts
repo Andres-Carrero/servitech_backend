@@ -1,3 +1,4 @@
+
 import { 
     Table, 
     Model, 
@@ -8,20 +9,23 @@ import {
     Column, 
     HasMany, 
     ForeignKey, 
-    BelongsTo} from "sequelize-typescript";
-import { productsDB } from "./products";
-import { StatusDB } from "./status";
+    BelongsTo,
+    CreatedAt,
+    UpdatedAt
+} from "sequelize-typescript";
+import { ProductosDB } from "./productos";
+import { EstadoDB } from "./estado";
 
 
 @Table({
-    tableName: 'Vendors',
+    tableName: 'Proveedores',
 })
-export class VendorsDB extends Model<VendorsDB>{
+export class ProveedoresDB extends Model<ProveedoresDB>{
 
     @Unique
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    unique_id: string
+    codigo_proveedor: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING(10000)})
@@ -29,27 +33,27 @@ export class VendorsDB extends Model<VendorsDB>{
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    nameCompany: string
+    nombre_empresa: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    address: string
+    direccion: string
 
-    @AllowNull(false)
+    /*@AllowNull(false)
     @Column({type: DataType.STRING})
-    NIF_CIF: String
+    NIF_CIF: String*/
 
     @AllowNull(false)
     @Column({type: DataType.STRING(5000)})
-    description: string
+    descripcion: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    frequency: string
+    frecuencia: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    termsAgainst: string
+    contrato: string
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
@@ -57,7 +61,7 @@ export class VendorsDB extends Model<VendorsDB>{
 
     @AllowNull(false)
     @Column({type: DataType.INTEGER})
-    numberContact: number
+    numero_contacto: number
 
     @Unique
     @AllowNull(false)
@@ -66,7 +70,7 @@ export class VendorsDB extends Model<VendorsDB>{
 
     @AllowNull(false)
     @Column({type: DataType.INTEGER})
-    numberPhone: number
+    numero_telefono: number
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
@@ -77,24 +81,32 @@ export class VendorsDB extends Model<VendorsDB>{
     iva: string
 
     @AllowNull(false) 
-    @ForeignKey(() => StatusDB)
+    @ForeignKey(() => EstadoDB)
     @Column({type: DataType.INTEGER})   
-    status_id: number
+    estado_id: number
+
+    @CreatedAt
+    @Column({type: DataType.DATE})
+    creado: Date
+
+    @UpdatedAt
+    @Column({type: DataType.DATE})
+    actualizado: Date
 
     @DeletedAt
     @Column({type: DataType.DATE})
-    deletedAt: Date
+    eliminado: Date
 
 
 
 
     
 
-    @BelongsTo(() => StatusDB)
-    status: StatusDB;
+    @BelongsTo(() => EstadoDB)
+    estado: EstadoDB;
 
-    @HasMany(() => productsDB)
-    products: productsDB
+    @HasMany(() => ProductosDB)
+    productos: ProductosDB
 }
 
 /*
