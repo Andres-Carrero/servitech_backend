@@ -1,0 +1,1 @@
+export const secretJWT = "-53rv1t3ch%4Cc3sS0r135%-%53n4*2021*/*2022-";

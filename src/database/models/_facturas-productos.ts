@@ -14,7 +14,7 @@ import { ProductosDB } from "./productos";
 @Table({
     tableName: 'Facturas_Productos',
 })
-export class _FacturasDB_ProductosDB extends Model<_FacturasDB_ProductosDB>{
+export class _FacturasDB_ProductosDB extends Model{
 
     @ForeignKey(() => FacturasDB)
     @Column({type: DataType.INTEGER})

@@ -13,10 +13,10 @@ import { FacturasDB } from "./facturas";
 @Table({
     tableName: 'EstadoPagos',
 })
-export class EstadoPagosDB extends Model<EstadoPagosDB>{
+export class EstadoPagosDB extends Model{
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(20)})
     estado: string
 
     @CreatedAt

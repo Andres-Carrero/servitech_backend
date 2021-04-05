@@ -6,6 +6,10 @@ import { RolesDB } from 'src/database/models/roles';
 import { EstadoDB } from 'src/database/models/estado';
 import { EstadoPagosDB } from 'src/database/models/estado_pagos';
 import { TipoVehiculosDB } from 'src/database/models/tipo_vehiculos';
+import * as moment from 'moment';
+import { UsersService } from './users.service';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Injectable()
 export class GeneralService {
@@ -27,53 +31,64 @@ constructor(
 
     @InjectModel(EstadoDB)
         private readonly EstadoModel: typeof EstadoDB,
-
+    
+    private UserServices: UsersService
 ){}
 
 async CreateAll(){
     const Status1 = {
         id: 1,
-        estado: 'Activo'
+        estado: 'Activo',
+        creado: moment.utc(new Date)
     }
     const Status2 = {
         id: 2,
-        estado: 'Pendiente'
+        estado: 'Pendiente',
+        creado: moment.utc(new Date)
     }
     const Status3 = {
         id: 3,
-        estado: 'Inactivo'
+        estado: 'Inactivo',
+        creado: moment.utc(new Date)
     }
     const Status4 = {
         id: 4,
-        estado: 'Eliminado'
+        estado: 'Eliminado',
+        creado: moment.utc(new Date)
     }
 
 
     const StatusPayment1 = {
         id: 1,
-        estado: 'Pagado'
+        estado: 'Pagado',
+        creado: moment.utc(new Date)
     }
     const StatusPayment2 = {
         id: 2,
-        estado: 'Pendiente'
+        estado: 'Pendiente',
+        creado: moment.utc(new Date)
     }
     const StatusPayment3 = {
         id: 3,
-        estado: 'Cancelado'
+        estado: 'Cancelado',
+        creado: moment.utc(new Date)
     }
 
 
     const Gender1 = {
         id: 1,
-        genero: 'Masculino'
+        genero: 'Masculino',
+        creado: moment.utc(new Date)
     }
     const Gender2 = {
         id: 2,
-        genero: 'Femenino'
+        genero: 'Femenino',
+        creado: moment.utc(new Date)
     }
     const Gender3 = {
         id: 3,
-        genero: 'Indefinido'
+        genero: 'Indefinido',
+        creado: moment.utc(new Date)
     }
 
 
@@ -81,58 +96,101 @@ async CreateAll(){
         id: 1,
         codigo_rol: 'ADMIN_ROLE',
         rol: 'Administrador',
-        descripcion: 'V1'
+        descripcion: 'V1',
+        creado: moment.utc(new Date)
     }
     const role2 = {
         id: 2,
-        codigo_rol: 'MODERADOR_ROLE',
-        rol: 'Moderador',
-        descripcion: 'V1'
-    }
-    const role3 = {
-        id: 3,
         codigo_rol: 'CLIENTE_ROLE',
         rol: 'Cliente',
-        descripcion: 'V1'
+        descripcion: 'V1',
+        creado: moment.utc(new Date)
     }
+
 
     const identification1 = {
         id: 1,
-        tipo: 'Cedula de Ciudadania'
+        tipo: 'Cedula de Ciudadania',
+        creado: moment.utc(new Date)
     }
     const identification2 = {
         id: 2,
-        tipo: 'Tarjeta de Identidad'
+        tipo: 'Tarjeta de Identidad',
+        creado: moment.utc(new Date)
     }
     const identification3 = {
         id: 3,
-        tipo: 'Cedula Extranjera'
+        tipo: 'Cedula Extranjera',
+        creado: moment.utc(new Date)
     }
 
     const typeVehicle1 = {
         id: 1,
         codigo_tipoVehiculo: 'TYPE_AUTOMOVIL',
-        tipo: 'Automovil'
+        tipo: 'Automovil',
+        creado: moment.utc(new Date)
     }
     const typeVehicle2 = {
         id: 2,
         codigo_tipoVehiculo: 'TYPE_MOTOCICLETA',
-        tipo: 'Motocicleta'
+        tipo: 'Motocicleta',
+        creado: moment.utc(new Date)
     }
     const typeVehicle3 = {
         id: 3,
         codigo_tipoVehiculo: 'TYPE_BICICLETA',
-        tipo: 'Bicicleta'
+        tipo: 'Bicicleta',
+        creado: moment.utc(new Date)
     }
     const typeVehicle4 = {
         id: 4,
         codigo_tipoVehiculo: 'TYPE_FURGON',
-        tipo: 'Furgon/Furgoneta'
+        tipo: 'Furgon/Furgoneta',
+        creado: moment.utc(new Date)
     }
     const typeVehicle5 = {
         id: 5,
         codigo_tipoVehiculo: 'TYPE_CAMION',
-        tipo: 'Camion'
+        tipo: 'Camion',
+        creado: moment.utc(new Date)
+    }
+
+    const userAdmin = {
+        id: 9999,
+        codigo_usuario: uuidv4(),
+        primer_nombre: 'ADMIN',
+        segundo_nombre: '.',
+        primer_apellido: 'GENERAL',
+        segundo_apellido: '.',
+        tipoIdentificacion_id: 1,
+        numero_identificacion: '0000000000',
+        email: 'ADMIN@SERVITECH.COM',
+        contrasena: 'admin123',
+        fecha_nacimiento: new Date,
+        role_id: 1,
+        estado_id: 1,
+        genero_id: 3,
+        numero_telefono: '0000000000',
+        numero_telefono2: '0000000000'
+    }
+    
+    const userClient = {
+        id: 9998,
+        codigo_usuario: uuidv4(),
+        primer_nombre: 'CLIENTE',
+        segundo_nombre: '.',
+        primer_apellido: 'GENERAL',
+        segundo_apellido: '.',
+        tipoIdentificacion_id: 1,
+        numero_identificacion: '0000000001',
+        email: 'CLIENT@SERVITECH.COM',
+        contrasena: 'CLIENT123',
+        fecha_nacimiento: new Date,
+        role_id: 2,
+        estado_id: 1,
+        genero_id: 3,
+        numero_telefono: '0000000001',
+        numero_telefono2: '0000000001'
     }
 
     const newStatus1 = await this.CreateStatus(Status1)
@@ -150,7 +208,6 @@ async CreateAll(){
 
     const newRole1 = await this.CreateRoles(role1)
     const newRole2 = await this.CreateRoles(role2)
-    const newRole3 = await this.CreateRoles(role3)
 
     const newIdentification1 = await this.CreateIdentification(identification1)
     const newIdentification2 = await this.CreateIdentification(identification2)
@@ -161,6 +218,9 @@ async CreateAll(){
     const newTypeVehicle3 = await this.CreateTypeVehicle(typeVehicle3)
     const newTypeVehicle4 = await this.CreateTypeVehicle(typeVehicle4)
     const newTypeVehicle5 = await this.CreateTypeVehicle(typeVehicle5)
+
+    const newUserAdmin = await this.UserServices.createUser(userAdmin)
+    const newUserClient = await this.UserServices.createUser(userClient)
 
     return {
         Status: {
@@ -182,7 +242,6 @@ async CreateAll(){
         Roles: {
             newRole1,
             newRole2,
-            newRole3
         },
         Identifications: {
             newIdentification1,
@@ -195,12 +254,14 @@ async CreateAll(){
             newTypeVehicle3,
             newTypeVehicle4,
             newTypeVehicle5
+        },
+        users: {
+            newUserAdmin,
+            newUserClient
         }
     }
 
 }
-
-
 
 
 

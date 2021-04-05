@@ -16,6 +16,9 @@ import { ProveedoresDB } from 'src/database/models/proveedores';
 import { _FacturasDB_ProductosDB } from 'src/database/models/_facturas-productos';
 import { GeneralController } from './controllers/general.controller';
 import { GeneralService } from './services/general.service';
+import { UsersService } from './services/users.service';
+import { UsersController } from './controllers/users.controller';
+import { TokenService } from './services/token.service';
 
 @Module({
     imports: [
@@ -38,9 +41,13 @@ import { GeneralService } from './services/general.service';
     ],
     controllers: [
         GeneralController,
+        UsersController,
     ],
     providers: [
-        GeneralService
+        GeneralService,
+        UsersService,
+        TokenService,
     ],
+    exports: [SequelizeModule]
 })
 export class IndexModule {}

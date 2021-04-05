@@ -1,3 +1,6 @@
+import { TokenService } from './app/services/token.service';
+import { UsersController } from './app/controllers/users.controller';
+import { UsersService } from './app/services/users.service';
 import { GeneralController } from './app/controllers/general.controller';
 import { GeneralService } from './app/services/general.service';
 import { IndexModule } from './app/index.module';

@@ -9,10 +9,10 @@ import { ProveedoresDB } from "./proveedores";
 @Table({
     tableName: 'Estado',
 })
-export class EstadoDB extends Model<EstadoDB>{
+export class EstadoDB extends Model{
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(20)})
     estado: string
 
     @CreatedAt

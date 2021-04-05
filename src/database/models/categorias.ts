@@ -18,14 +18,14 @@ import { EstadoDB } from "./estado";
 @Table({
     tableName: 'Categorias',
 })
-export class CategoriaDB extends Model<CategoriaDB>{
+export class CategoriaDB extends Model{
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
     codigo_categoria: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(50)})
     titulo: string
 
     @AllowNull(false)

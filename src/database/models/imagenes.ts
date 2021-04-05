@@ -17,7 +17,7 @@ import { ProductosDB } from "./productos";
 @Table({
     tableName: 'Imagenes',
 })
-export class ImagenesDB extends Model<ImagenesDB>{
+export class ImagenesDB extends Model{
      
     @Unique
     @AllowNull(false)
@@ -25,11 +25,11 @@ export class ImagenesDB extends Model<ImagenesDB>{
     codigo_imagen: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(50)})
     titulo: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING(90000)})
+    @Column({type: DataType.STRING(99999)})
     contenido: string
 
     @AllowNull(false) 

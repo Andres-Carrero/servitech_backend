@@ -15,7 +15,7 @@ import { UsuarioDB } from "./usuarios";
 @Table({
     tableName: 'Roles',
 })
-export class RolesDB extends Model<RolesDB>{
+export class RolesDB extends Model{
     
     @Unique
     @AllowNull(false)
@@ -23,11 +23,11 @@ export class RolesDB extends Model<RolesDB>{
     codigo_rol: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(30)})
     rol: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(5000)})
     descripcion: string
 
     @CreatedAt

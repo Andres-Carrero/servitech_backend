@@ -7,7 +7,7 @@ import { UsuarioDB } from "./usuarios";
 @Table({
     tableName: 'Vehiculos',
 })
-export class VehiculosDB extends Model<VehiculosDB>{
+export class VehiculosDB extends Model{
 
     @Unique
     @AllowNull(false)
@@ -15,24 +15,24 @@ export class VehiculosDB extends Model<VehiculosDB>{
     codigo_vehiculo: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(30)})
     alias: string
 
     @Unique(true)
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(15)})
     placa: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(20)})
     marca: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(30)})
     modelo: string  
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(30)})
     color:string
 
     @AllowNull(false)

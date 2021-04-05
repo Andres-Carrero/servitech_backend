@@ -19,7 +19,7 @@ import { VehiculosDB } from "./vehiculos";
 @Table({
     tableName: 'TipoVehiculos',
 })
-export class TipoVehiculosDB extends Model<TipoVehiculosDB>{
+export class TipoVehiculosDB extends Model{
      
     @Unique
     @AllowNull(false)
@@ -27,7 +27,7 @@ export class TipoVehiculosDB extends Model<TipoVehiculosDB>{
     codigo_tipoVehiculo: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(30)})
     tipo: string
     
     @CreatedAt

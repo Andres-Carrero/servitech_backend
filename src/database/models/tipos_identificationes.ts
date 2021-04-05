@@ -14,11 +14,11 @@ import { UsuarioDB } from "./usuarios";
 @Table({
     tableName: 'Identificationes',
 })
-export class IdentificationesDB extends Model<IdentificationesDB>{
+export class IdentificationesDB extends Model{
 
     @Unique(true)
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(20)})
     tipo: string
 
     @CreatedAt

@@ -11,10 +11,10 @@ import {
 @Table({
     tableName: 'Generos',
 })
-export class GenerosDB extends Model<GenerosDB>{
+export class GenerosDB extends Model{
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(20)})
     genero: string
 
     @CreatedAt

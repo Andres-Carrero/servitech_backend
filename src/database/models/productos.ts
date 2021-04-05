@@ -22,7 +22,7 @@ import { _FacturasDB_ProductosDB } from "./_facturas-productos";
 @Table({
     tableName: 'Productos',
 })
-export class ProductosDB extends Model<ProductosDB>{
+export class ProductosDB extends Model{
 
     @Unique
     @AllowNull(false)
@@ -30,7 +30,7 @@ export class ProductosDB extends Model<ProductosDB>{
     codigo_prod: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(50)})
     titulo: string
 
     @AllowNull(false)
@@ -42,8 +42,8 @@ export class ProductosDB extends Model<ProductosDB>{
     precio: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
-    cantidad_disp: string
+    @Column({type: DataType.INTEGER})
+    cantidad_disp: number
 
     @AllowNull(false) 
     @ForeignKey(() => ProveedoresDB)

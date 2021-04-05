@@ -20,7 +20,7 @@ import { _FacturasDB_ProductosDB } from "./_facturas-productos";
 @Table({
     tableName: 'Facturas',
 })
-export class FacturasDB extends Model<FacturasDB>{
+export class FacturasDB extends Model{
      
     @Unique
     @AllowNull(false)
@@ -28,7 +28,7 @@ export class FacturasDB extends Model<FacturasDB>{
     codigo_facturas: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(100)})
     asunto: string
 
     @AllowNull(false)

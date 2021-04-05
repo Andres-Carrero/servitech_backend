@@ -25,32 +25,31 @@ import { VehiculosDB } from "./vehiculos";
 @Table({
     tableName: 'Usuarios',
 })
-export class UsuarioDB extends Model<UsuarioDB>{
+export class UsuarioDB extends Model{
 
     @Unique(true)
     @AllowNull(false)
     @Column({type: DataType.STRING})
     codigo_usuario: string
 
-    @AllowNull(false)
-    @Column({type: DataType.STRING(10000)})
+    @Column({type: DataType.STRING(99999)})
     imagen: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(20)})
     primer_nombre: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
-    secundo_nombre: string
+    @Column({type: DataType.STRING(20)})
+    segundo_nombre: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(20)})
     primer_apellido: string
     
     @AllowNull(false)
-    @Column({type: DataType.STRING})
-    segundo_nombre: string
+    @Column({type: DataType.STRING(20)})
+    segundo_apellido: string
 
     @AllowNull(false) 
     @ForeignKey(() => IdentificationesDB)
@@ -59,19 +58,19 @@ export class UsuarioDB extends Model<UsuarioDB>{
       
     @Unique(true)
     @AllowNull(false)
-    @Column({type: DataType.INTEGER})
-    numero_identificacion: number
+    @Column({type: DataType.STRING})
+    numero_identificacion: string
 
     @Unique(true)
     @IsEmail
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(50)})
     email: string
 
     @AllowNull(false)
-    @Length({min: 8})
-    @Column({type: DataType.STRING})
-    contraseña: string
+
+    @Column({type: DataType.STRING(80)})
+    contrasena: string
 
     @AllowNull(false)
     @Column({type: DataType.DATE})
@@ -92,13 +91,14 @@ export class UsuarioDB extends Model<UsuarioDB>{
     @Column({type: DataType.INTEGER})
     genero_id: number;
 
+    @Unique(true)
     @AllowNull(false)
-    @Column({type: DataType.INTEGER})
-    numero_telefono: number
+    @Column({type: DataType.STRING(20)})
+    numero_telefono: string
 
     @AllowNull(false)
-    @Column({type: DataType.INTEGER})
-    numero_telefono2: number
+    @Column({type: DataType.STRING(20)})
+    numero_telefono2: string
 
     @CreatedAt
     @Column({type: DataType.DATE})

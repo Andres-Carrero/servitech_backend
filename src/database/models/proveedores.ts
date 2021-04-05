@@ -20,7 +20,7 @@ import { EstadoDB } from "./estado";
 @Table({
     tableName: 'Proveedores',
 })
-export class ProveedoresDB extends Model<ProveedoresDB>{
+export class ProveedoresDB extends Model{
 
     @Unique
     @AllowNull(false)
@@ -28,7 +28,7 @@ export class ProveedoresDB extends Model<ProveedoresDB>{
     codigo_proveedor: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING(10000)})
+    @Column({type: DataType.STRING(99999)})
     img: string
 
     @AllowNull(false)
@@ -56,7 +56,7 @@ export class ProveedoresDB extends Model<ProveedoresDB>{
     contrato: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(100)})
     web: string
 
     @AllowNull(false)
@@ -65,7 +65,7 @@ export class ProveedoresDB extends Model<ProveedoresDB>{
 
     @Unique
     @AllowNull(false)
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING(100)})
     email: string
 
     @AllowNull(false)
